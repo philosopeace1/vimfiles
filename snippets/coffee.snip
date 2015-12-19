@@ -1,0 +1,22 @@
+snippet     ready
+abbr        jQuery DOM ready
+options     head
+  $ ->
+    ${1}
+snippet     jq
+abbr        $('').anything
+options     head
+  $('${1}').${2}
+snippet     click
+abbr        $.click
+options     head
+  $('${1}').click (ev) ->
+      ${0}
+
+snippet     al
+abbr        alert
+    alert ${1}
+snippet     l
+abbr        console.log
+    console.log ${1}
+

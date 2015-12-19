@@ -1,0 +1,170 @@
+snippet     begin
+abbr        begin rescue end
+options     head
+  begin
+    ${1}
+  rescue Exception => e
+    ${2}
+  end
+
+snippet     s
+abbr        #{}
+options     word
+  #{${1}}
+
+snippet     bp
+abbr        binding.pry
+  binding.pry
+snippet     bb
+abbr        byebug
+  byebug
+snippet     d
+abbr        debug
+  debug ${1}
+snippet     ra
+abbr        raise
+  raise ${1}
+
+snippet     cm
+abbr        ruby comment
+  =begin
+  ${1}
+  =end
+snippet ed
+options word
+    each do |${1:#:variable}|
+      ${2}
+    end
+snippet     distinct
+abbr        distinct.pluck
+options     word
+  distinct.pluck(:${1:column_name})
+snippet     mo
+abbr        module
+options word
+  module ${1:module_name}
+  end
+snippet     class
+abbr        class
+options     head
+  class ${1} < ${2:extendClas}
+  ${0}
+  end
+snippet     ewo
+abbr        each_with_object
+options word
+  each_with_object(${1:init_val}) do |v,res|
+    ${0}
+  end
+
+snippet     r
+abbr        return
+options     head
+  return
+
+snippet     module
+abbr        module
+options     head
+  module ${1:ModuleName}
+  ${0}
+  end
+snippet     flash
+abbr        flash
+options     head
+  flash[${1:notice}] = "${0:保存しました}"
+snippet     case
+abbr        case
+options     head
+  case ${1}
+    when ${2}
+    else ${3}
+  end
+snippet     validate_presence
+abbr        validate presence:true
+options     head
+  validates :${1:column_name}, presence: true
+snippet     rt
+abbr        return true
+options     head
+  return true
+
+snippet     rf
+abbr        return false
+options     head
+  return false
+
+
+#################
+## RSpec       ##
+#################
+snippet     before
+abbr        (spec) before{...}
+options     head
+  before {${1}}
+snippet     before_do
+abbr        (spec) before do {...} end
+options     head
+  before do
+    ${1}
+  end
+snippet     subject
+abbr        (rspe) subject{}
+options     head
+  subject {${1}}
+snippet     it
+abbr        it {should ...}
+options     head
+  it {should ${1}}
+snippet     itd
+abbr        it ... do ...
+options     head
+  it '${1}' do
+    ${2}
+  end
+snippet     describe
+abbr        describe '' do ... end
+options     head
+  describe '${1}' do
+    ${2}
+  end
+snippet     context
+abbr        context '' do ... end
+options     head
+  context '${1}' do
+    ${2}
+  end
+snippet     sharedexample
+abbr        shared_example
+options     head
+  shared_examples_for "${1:shared_name}" do
+  end
+snippet     it_should_behave_like
+abbr        it_should_behave_like
+options     head
+  it_should_behave_like "${1:shared_name}" do
+      ${2:content}
+  end
+snippet     let(:key){ val }
+abbr        let(:heading)    { 'sample app' }
+options     head
+  let(:${1:key})  { ${2:val} }
+snippet     fill_in
+abbr        fill_in ... with ...
+options     head
+  fill_in ${1:field},with: ${2:val}
+snippet     redirect_to
+abbr        redirect_to
+options     head
+  redirect_to ${1:path}
+
+snippet     scope
+abbr        scope
+options     head
+  scope :${1:scope_name}, -> ${2:arg}{ where(${3:conditions}) }
+
+snippet     nf
+abbr        null:false
+  null: false
+snippet     lamda
+abbr        -> { }
+  -> { ${1} }

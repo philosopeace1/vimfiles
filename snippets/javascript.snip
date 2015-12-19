@@ -1,0 +1,59 @@
+snippet     l
+abbr        console.log
+options     head
+  console.log(${1})
+snippet     jq
+abbr        $(element)
+options     head
+  $(${1:el}).${2:method}
+
+snippet     dw
+abbr        docment.write
+    document.write("${1:hoge}");
+snippet     cons
+abbr        console.log
+prev_word   '^'
+    console.log(${1});
+snippet     l
+abbr        console.log
+prev_word   '^'
+    console.log(${1});
+snippet     rf
+abbr        return false;
+prev_word   '^'
+    return false;
+snippet     r
+abbr        return;
+    return${1};
+snippet     dr
+abbr        $(function(){});(document.ready)
+    $(function(){
+        ${1}
+    });
+snippet     jq
+abbr        $("").method(prop)
+    $("${1}").${2:method}(${3:method_property});
+snippet     swi
+abbr        switch(){}
+    switch(${1}){
+    case ${2}:
+        ${3};
+        break;
+    default:
+        ${4:default};
+        break;
+    }
+snippet     function(){}
+abbr        (mumei)function(){}
+    function(${1}){${2}}
+snippet     if
+abbr        if(){}
+    if(${1}){
+        ${2};
+    }
+snippet     al
+abbr        alert
+    alert(${1});
+snippet     t
+    $(this)
+
