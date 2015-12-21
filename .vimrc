@@ -1,29 +1,22 @@
- " Note: Skip initialization for vim-tiny or vim-small.
- if 0 | endif
-
+"neoBundle"""""""""""""""""""""""""""""""""
+if 0 | endif
  if has('vim_starting')
    if &compatible
      set nocompatible               " Be iMproved
    endif
-
-   " Required:
    set runtimepath+=~/.vim/bundle/neobundle.vim/
  endif
-
- " Required:
  call neobundle#begin(expand('~/.vim/bundle/'))
-
- " Let NeoBundle manage NeoBundle
- " Required:
  NeoBundleFetch 'Shougo/neobundle.vim'
 
- NeoBundle 'gregsexton/MatchTag'
  NeoBundle 'Shougo/neocomplete'
  NeoBundle 'Shougo/neosnippet'
  NeoBundle 'Shougo/neosnippet-snippets'
+ NeoBundle 'Shougo/neomru.vim'
  NeoBundle 'Shougo/unite.vim'
  NeoBundle 'Shougo/unite-outline'
- NeoBundle 'Shougo/neomru.vim'
+
+ NeoBundle 'tpope/vim-fugitive'
  NeoBundle 'Lokaltog/vim-easymotion'
  NeoBundle 'tpope/vim-surround.git'
  NeoBundle 'scrooloose/nerdtree.git'
@@ -36,56 +29,38 @@
  NeoBundle 'tpope/vim-repeat'
  NeoBundle 'LeafCage/yankround.vim'
 
+ NeoBundle 'sjl/gundo.vim'
+ NeoBundle 'rking/ag.vim'
 
+ "Programing Language
+ "ruby
  NeoBundle 'vim-ruby/vim-ruby'
  NeoBundle 'vim-scripts/ruby-matchit'
  NeoBundle 'tpope/vim-rails'
  NeoBundle 'basyura/unite-rails'
+ "other
  NeoBundle 'tpope/vim-haml'
  NeoBundle "slim-template/vim-slim"
  NeoBundle 'mattn/emmet-vim'
  NeoBundle 'pangloss/vim-javascript.git'
  NeoBundle 'kchmck/vim-coffee-script'
  NeoBundle 'cakebaker/scss-syntax.vim'
-
- NeoBundle 'sjl/gundo.vim'
- NeoBundle 'mileszs/ack.vim'
- NeoBundle 'rking/ag.vim'
-
-
- " My Bundles here:
- " Refer to |:NeoBundle-examples|.
- " Note: You don't set neobundle setting in .gvimrc!
+ NeoBundle 'gregsexton/MatchTag'
 
  call neobundle#end()
 
- " Required:
- filetype plugin indent on
-
- " If there are uninstalled bundles found on startup,
- " this will conveniently prompt you to install them.
- NeoBundleCheck
-
+filetype plugin indent on
+NeoBundleCheck
 
 "Basic設定"""""""""""""""""""""""""""""""""""""""
 syntax on
-":colorscheme elflord
-":colorscheme delek
-":colorscheme ap_dark8
 set autoindent
 set showmatch
 set hidden
 set incsearch
-"set list
-"set listchars=eol:$,tab:>\ ,extends:<
+set list
+set listchars=tab:^\ ,trail:@
 set listchars=extends:<
-
-highlight JpSpace cterm=underline ctermfg=Blue guifg=Blue
-au BufRead,BufNew * match JpSpace /　/
-
-highlight Whitespace cterm=underline ctermfg=darkgray guifg=darkgray
-"match Whitespace /\s/
-autocmd BufRead,BufNew * match Whitespace / /
 set number
 set tabstop=2
 set shiftwidth=2
@@ -95,8 +70,7 @@ set expandtab
 set ignorecase
 set smartcase
 set hlsearch
-autocmd BufReadPost quickfix set modifiable
-
+set modifiable
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
@@ -108,29 +82,28 @@ set directory=~/.vim/tmp
 
 set tags+=.tags;
 
-vmap <C-c> :w !pbcopy<CR><CR>
-
-
-"htmlで対応するタグに%でジャンプ
-"runtime macros/matchit.vim
-
-
 if !has('gui_running')
 	set t_Co=256
 endif
 
+highlight JpSpace cterm=underline ctermfg=Blue guifg=Blue
+au BufRead,BufNew * match JpSpace /　/
+
+highlight Whitespace cterm=underline ctermfg=darkgray guifg=darkgray
+"match Whitespace /\s/
+autocmd BufRead,BufNew * match Whitespace / /
+"autocmd BufReadPost quickfix set modifiable
+
+"行末のスペース削除"
+"http://qiita.com/mktakuya/items/2a6cd35ca0c1b217e28c
+autocmd BufWritePre * :%s/\s\+$//ge
+
+:autocmd BufWinEnter * setlocal modifiable
 
 "ファイル・タイプを独自に関連付ける"""""""""""""""""""""""""""""""""""""""
 autocmd BufNewFile,BufRead *.scss set filetype=css
 
 "独自短縮入力"""""""""""""""""""""""""""""""""""""""
-iab YDT <C-R>=strftime("%Y-%m-%d %T")<CR>
-"iab fe foreach as $k => $v{<CR><TAB><CR><UP><UP><ESC>e<SPACE>i
-"iab for for($i = 0;$i<=n;$i++){<CR><TAB>}
-"iab pe <?php echo ;?><LEFT><LEFT><LEFT>
-imap ,cm <!----><LEFT><LEFT><LEFT>
-"inoremap { {}<LEFT>
-
 inoremap [<TAB> []<LEFT>
 inoremap [<TAB><TAB> [""]<LEFT><LEFT>
 inoremap [[<TAB> [][]<LEFT><LEFT><LEFT>
@@ -141,8 +114,6 @@ map ,y :'s,'ey<CR>
 map ,d :'s,'ed<CR>
 nnoremap ,q <ESC>:bd<CR>
 inoremap <C-O> <ESC>o
-inoremap <C-W> <ESC>:w
-"nnoremap <C-W> <ESC>:w
 inoremap <C-s> <ESC>:w
 nnoremap <C-s> <ESC>:w
 inoremap <C-CR> <ESC>:bn<CR>
@@ -151,20 +122,12 @@ smap  <BS> <BS>i
 smap  <CR> <BS>
 nnoremap ,sp <ESC>:set paste<CR>i
 nnoremap ,snp <ESC>:set nopaste<CR>
+nnoremap ,sm <Esc>:set modifiable<CR>
 
 inoremap 2<Tab> ""<Left>
 inoremap 7<Tab> ''<Left>
 inoremap 8<TAB> ()<Left>
 inoremap {<TAB> {<CR><CR>}<UP>
-"日付の入力補助
-"inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
-"inoremap <expr> ,dd strftime('%Y-%m-%d')
-"inoremap <expr> ,dt strftime('%H:%M:%S')
-
-
-"行末のスペース削除"
-"http://qiita.com/mktakuya/items/2a6cd35ca0c1b217e28c
-autocmd BufWritePre * :%s/\s\+$//ge
 
 "--------------------------------------------------------------------------
 " neocomplete
@@ -182,31 +145,27 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
-
 "--------------------------------------------------------------------------
 " neosnippet
+" Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+
 " SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 let g:neosnippet#snippets_directory='~/.vim/snippets'
-
-
 nnoremap ,sni :NeoSnippetEdit
-
-"unite-outline""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap tt :Unite outline -winwidth=30 -vertical<CR><ESC>
-nnoremap ,t :Unite outline -winwidth=30 -vertical<CR><ESC>
 
 "unite.vim""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:unite_split_rule = "righttop"
@@ -214,11 +173,38 @@ let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable =1
 " バッファ一覧
 nnoremap ;; :<C-u>Unite buffer -direction=botright -auto-resize -toggle<CR>
+nnoremap ;f :<C-u>Unite buffer -direction=botright -auto-resize -toggle<ESC><CR>
 " 全部乗せ
 nnoremap :: :<C-u>UniteWithBufferDir -buffer-name=files buffer bookmark file -direction=botright -toggle<CR>
 nnoremap ;: :<C-u>Unite file_mru<CR>
 "ヤンク履歴
 nnoremap <C-u><C-y> :Unite -buffer-name=register register<CR>
+
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+
+" grep検索
+nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" カーソル位置の単語をgrep検索
+nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+" grep検索結果の再呼出
+nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+
+" unite grep に ag(The Silver Searcher) を使う
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+"vim-javascript""""""""""""""""""""""""""""""""""""""""""""""""""
+"https://github.com/pangloss/vim-javascript
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
 
 
 "easy-motion""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -256,25 +242,14 @@ nnoremap ,ccc <ESC><C-w><C-W>:bd <CR>
 
 "NerdTree""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap ,, :NERDTreeToggle<CR>
-noremap ,nf :NERDTree<CR><C-W><C-W>:NERDTreeFind<CR>
+map ,nf :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 50
-
-"vim-airline""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:airline#extensions#tabline#enabled = 1
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-set laststatus=2
-
+let NERDSpaceDelims = 1
 
 "vim-easy-align""""""""""""""""""""""""""""""""""""""""""""""""""
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
 
 "yankround""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap p <Plug>(yankround-p)
@@ -286,4 +261,20 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+
+"inoremap <buffer> <silent> <CR> <C-R>=AutoPairsSpace()<CR>
 
