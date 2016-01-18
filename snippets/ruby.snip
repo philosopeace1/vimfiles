@@ -15,7 +15,7 @@ options     word
 snippet     bp
 abbr        binding.pry
   binding.pry
-snippet     bb
+snippet     b
 abbr        byebug
   byebug
 snippet     d
@@ -168,3 +168,16 @@ abbr        null:false
 snippet     lamda
 abbr        -> { }
   -> { ${1} }
+
+snippet     fc
+abbr        FactoryGirl.create
+  FactoryGirl.create :${1}
+
+### minispec ###
+snippet     assert
+abbr        assert
+  assert ${1:value}
+
+snippet     assert_equal
+abbr        assert_equal
+  assert_equal ${1:expected}, ${2:value}
