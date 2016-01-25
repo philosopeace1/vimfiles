@@ -100,22 +100,10 @@ autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufNewFile,BufRead *.scss set filetype=css
 
 "独自短縮入力"""""""""""""""""""""""""""""""""""""""
-inoremap [<TAB> []<LEFT>
-inoremap [<TAB><TAB> [""]<LEFT><LEFT>
-inoremap [[<TAB> [][]<LEFT><LEFT><LEFT>
-inoremap [[<TAB><TAB> [""][""]<LEFT><LEFT><LEFT><LEFT><LEFT><LEFT>
-inoremap =<TAB> <Space>=<Space>
-nnoremap <CR> i<CR><UP><ESC>
-map ,y :'s,'ey<CR>
-map ,d :'s,'ed<CR>
 nnoremap ,q <ESC>:bd<CR>
-inoremap <C-O> <ESC>o
-inoremap <C-s> <ESC>:w
-nnoremap <C-s> <ESC>:w
-inoremap <C-CR> <ESC>:bn<CR>
+inoremap <C-s> <ESC>:w<CR>i
+nnoremap <C-s> <ESC>:w<CR>
 
-smap  <BS> <BS>i
-smap  <CR> <BS>
 nnoremap ,sp <ESC>:set paste<CR>i
 nnoremap ,snp <ESC>:set nopaste<CR>
 nnoremap ,sm <Esc>:set modifiable<CR>
