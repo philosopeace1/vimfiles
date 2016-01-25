@@ -181,11 +181,11 @@ let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 " 「'」 + 何かにマッピング
 let g:EasyMotion_leader_key="<SPACE>"
 " 1 ストローク選択を優先する
-let g:EasyMotion_grouping=1
+"let g:EasyMotion_grouping=1
 " カラー設定変更
 hi EasyMotionTarget ctermbg=none ctermfg=red
 hi EasyMotionShade  ctermbg=none ctermfg=blue
-
+nmap <SPACE>s <Plug>(easymotion-s2)
 
 "unite-rails""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap ,c :<C-u>Unite rails/controller<CR>
