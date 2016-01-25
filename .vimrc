@@ -244,3 +244,7 @@ nmap ,t :Unite -vertical -direction=botright -winwidth=50 -no-start-insert outli
 if !exists('loaded_matchit')
   runtime macros/matchit.vim
 endif
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"#nnoremap ,e <ESC>:w<ESC>SyntasticCheck<CR> :SyntasticToggleMode<CR>
+nnoremap ,e :w<CR>:SyntasticCheck<CR>
