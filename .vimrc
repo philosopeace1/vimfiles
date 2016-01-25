@@ -42,6 +42,7 @@ if 0 | endif
  NeoBundle 'kchmck/vim-coffee-script'
  NeoBundle 'cakebaker/scss-syntax.vim'
  NeoBundle 'gregsexton/MatchTag'
+ NeoBundle 'jiangmiao/auto-pairs'
 
  call neobundle#end()
 
@@ -233,7 +234,9 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-"inoremap <buffer> <silent> <CR> <C-R>=AutoPairsSpace()<CR>
+"autopairs""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap <buffer> <silent> <CR> <C-R>=AutoPairsSpace()<CR>
+
 "unite outline""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap ,t :Unite -vertical -direction=botright -winwidth=50 -no-start-insert outline<CR>
 
