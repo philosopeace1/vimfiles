@@ -180,28 +180,11 @@ nnoremap <C-u><C-y> :Unite -buffer-name=register register<CR>
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 
-" grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-
-" カーソル位置の単語をgrep検索
-nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-
-" grep検索結果の再呼出
-nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
-
-" unite grep に ag(The Silver Searcher) を使う
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-
 "vim-javascript""""""""""""""""""""""""""""""""""""""""""""""""""
 "https://github.com/pangloss/vim-javascript
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
-
 
 "easy-motion""""""""""""""""""""""""""""""""""""""""""""""""""
 "http://blog.remora.cx/2012/08/vim-easymotion.html
@@ -231,7 +214,6 @@ noremap ,s :<C-u>Unite rails/stylesheet<CR>
 noremap ,rs :<C-u>Unite rails/stylesheet<CR>
 noremap ,cf :<C-u>Unite rails/config<CR>
 
-
 "coffe-script""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap ,cc <ESC>:CoffeeCompile vert <CR><C-w><C-W>
 nnoremap ,ccc <ESC><C-w><C-W>:bd <CR>
@@ -257,20 +239,11 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
-
-" The Silver Searcher
+"ag.vim""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 
 "inoremap <buffer> <silent> <CR> <C-R>=AutoPairsSpace()<CR>
 "unite outline""""""""""""""""""""""""""""""""""""""""""""""""""
