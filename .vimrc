@@ -21,10 +21,7 @@ if 0 | endif
  NeoBundle 'tpope/vim-surround.git'
  NeoBundle 'scrooloose/nerdtree.git'
  NeoBundle 'scrooloose/syntastic'
- NeoBundle 'scrooloose/nerdcommenter'
- NeoBundle 'godlygeek/tabular'
  NeoBundle 'junegunn/vim-easy-align'
- NeoBundle 'bling/vim-airline'
  NeoBundle 'itchyny/lightline.vim'
  NeoBundle 'tpope/vim-repeat'
  NeoBundle 'LeafCage/yankround.vim'
@@ -39,7 +36,6 @@ if 0 | endif
  NeoBundle 'tpope/vim-rails'
  NeoBundle 'basyura/unite-rails'
  "other
- NeoBundle 'tpope/vim-haml'
  NeoBundle "slim-template/vim-slim"
  NeoBundle 'mattn/emmet-vim'
  NeoBundle 'pangloss/vim-javascript.git'
