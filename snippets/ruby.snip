@@ -24,7 +24,6 @@ abbr        debug
 snippet     ra
 abbr        raise
   raise ${1}
-
 snippet     cm
 abbr        ruby comment
   =begin
@@ -37,11 +36,9 @@ options word
     end
 snippet     distinct
 abbr        distinct.pluck
-options     word
   distinct.pluck(:${1:column_name})
-snippet     mo
+snippet     module
 abbr        module
-options word
   module ${1:module_name}
   end
 snippet     class
@@ -56,22 +53,6 @@ options word
   each_with_object(${1:init_val}) do |v,res|
     ${0}
   end
-
-snippet     r
-abbr        return
-options     head
-  return
-
-snippet     module
-abbr        module
-options     head
-  module ${1:ModuleName}
-  ${0}
-  end
-snippet     flash
-abbr        flash
-options     head
-  flash[${1:notice}] = "${0:保存しました}"
 snippet     case
 abbr        case
 options     head
@@ -79,24 +60,52 @@ options     head
     when ${2}
     else ${3}
   end
-snippet     validate_presence
-abbr        validate presence:true
+snippet     r
+abbr        return
 options     head
-  validates :${1:column_name}, presence: true
+  return
 snippet     rt
 abbr        return true
 options     head
   return true
-
 snippet     rf
 abbr        return false
 options     head
   return false
+snippet     nf
+abbr        null:false
+  null: false
+snippet     lamda
+abbr        -> { }
+  -> { ${1} }
 
+#######################################
+###  Rails
+#######################################
+### Model ###
+snippet     scope
+abbr        scope
+options     head
+  scope :${1:scope_name}, -> ${2:arg}{ where(${3:conditions}) }
+snippet     validate_presence
+abbr        validate presence:true
+options     head
+  validates :${1:column_name}, presence: true
 
-#################
+### Controller ###
+snippet     redirect_to
+abbr        redirect_to
+options     head
+  redirect_to ${1:path}
+
+snippet     flash
+abbr        flash
+options     head
+  flash[${1:notice}] = "${0:保存しました}"
+
+#######################################
 ## RSpec       ##
-#################
+#######################################
 snippet     before
 abbr        (spec) before{...}
 options     head
@@ -152,28 +161,10 @@ snippet     fill_in
 abbr        fill_in ... with ...
 options     head
   fill_in ${1:field},with: ${2:val}
-snippet     redirect_to
-abbr        redirect_to
-options     head
-  redirect_to ${1:path}
 
-snippet     scope
-abbr        scope
-options     head
-  scope :${1:scope_name}, -> ${2:arg}{ where(${3:conditions}) }
-
-snippet     nf
-abbr        null:false
-  null: false
-snippet     lamda
-abbr        -> { }
-  -> { ${1} }
-
-snippet     fc
-abbr        FactoryGirl.create
-  FactoryGirl.create :${1}
-
-### minispec ###
+#######################################
+## MiniSpec       ##
+#######################################
 snippet     assert
 abbr        assert
   assert ${1:value}
@@ -181,3 +172,13 @@ abbr        assert
 snippet     assert_equal
 abbr        assert_equal
   assert_equal ${1:expected}, ${2:value}
+
+#######################################
+## FactoryGirl ##
+#######################################
+snippet     fc
+abbr        FactoryGirl.create
+  FactoryGirl.create :${1}
+snippet     fb
+abbr        FactoryGirl.build
+  FactoryGirl.build :${1}

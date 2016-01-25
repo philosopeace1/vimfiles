@@ -17,7 +17,7 @@ options     head
 snippet     link_to
 abbr        link_to
 options     word
-  = link_to ${1:value}, ${2:path}, {${3:html_options}}
+  link_to ${1:value}, ${2:path}, {${3:html_options}}
 
 snippet     image_tag
 abbr        image_tag
@@ -27,9 +27,14 @@ options     head
 snippet     render
 abbr        render
 options     head
-  = render :partial => "${1}", :locals => {${2:val1}: ${3:xxx}}  
+  = render :partial => "${1}", :locals => {${2:val1}: ${3:xxx}}
 
 snippet     l
 abbr        console.log
 options     head
   console.log(${1})
+
+snippet     each
+abbr        each
+  each do |${1:value}|
+    ${2}
