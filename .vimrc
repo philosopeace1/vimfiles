@@ -273,4 +273,10 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 
 "inoremap <buffer> <silent> <CR> <C-R>=AutoPairsSpace()<CR>
+"unite outline""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap ,t :Unite -vertical -direction=botright -winwidth=50 -no-start-insert outline<CR>
 
+"ruby matchit""""""""""""""""""""""""""""""""""""""""""""""""""
+if !exists('loaded_matchit')
+  runtime macros/matchit.vim
+endif
