@@ -101,8 +101,9 @@ autocmd BufNewFile,BufRead *.scss set filetype=css
 
 "独自短縮入力"""""""""""""""""""""""""""""""""""""""
 nnoremap ,q <ESC>:bd<CR>
-inoremap <C-s> <ESC>:w<CR>i
+inoremap <C-s> <ESC>:w<CR>
 nnoremap <C-s> <ESC>:w<CR>
+nnoremap <CR> i<CR><UP><ESC>
 
 nnoremap ,sp <ESC>:set paste<CR>i
 nnoremap ,snp <ESC>:set nopaste<CR>
@@ -163,6 +164,8 @@ nnoremap :: :<C-u>UniteWithBufferDir -buffer-name=files buffer bookmark file -di
 nnoremap ;: :<C-u>Unite file_mru<CR>
 "ヤンク履歴
 nnoremap <C-u><C-y> :Unite -buffer-name=register register<CR>
+"tab
+nnoremap <C-u><C-t> :Unite tab<CR>
 
 " 大文字小文字を区別しない
 let g:unite_enable_ignore_case = 1
@@ -211,6 +214,9 @@ noremap ,, :NERDTreeToggle<CR>
 map ,nf :NERDTreeFind<CR>
 let g:NERDTreeWinSize = 50
 let NERDSpaceDelims = 1
+nmap  <C-l> :tabn<CR>
+nmap  <C-h> :tabp<CR>
+nmap  <C-n> :tabnew<CR>
 
 "vim-easy-align""""""""""""""""""""""""""""""""""""""""""""""""""
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
