@@ -109,7 +109,7 @@ options     head
 snippet     before
 abbr        (spec) before{...}
 options     head
-  before {${1}}
+  before { ${1} }
 snippet     before_do
 abbr        (spec) before do {...} end
 options     head
@@ -153,10 +153,10 @@ options     head
   it_should_behave_like "${1:shared_name}" do
       ${2:content}
   end
-snippet     let(:key){ val }
-abbr        let(:heading)    { 'sample app' }
+snippet     let
+abbr        let(:key)    { val }
 options     head
-  let(:${1:key})  { ${2:val} }
+  let(:${1:key}) { ${2:val} }
 snippet     fill_in
 abbr        fill_in ... with ...
 options     head
@@ -182,3 +182,12 @@ abbr        FactoryGirl.create
 snippet     fb
 abbr        FactoryGirl.build
   FactoryGirl.build :${1}
+
+snippet     trait
+abbr        trait
+options     head
+  trait :${1} do
+    after(:build) do |${2}|
+      ${0}
+    end
+  end
