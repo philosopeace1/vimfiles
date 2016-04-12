@@ -26,7 +26,7 @@ if 0 | endif
  NeoBundle 'tpope/vim-repeat'
  NeoBundle 'LeafCage/yankround.vim'
 
- NeoBundle 'sjl/gundo.vim'
+ "NeoBundle 'sjl/gundo.vim'
  NeoBundle 'rking/ag.vim'
 
  "Programing Language
@@ -79,7 +79,7 @@ set directory=~/.vim/tmp
 set tags+=.tags;
 
 if !has('gui_running')
-	set t_Co=256
+"	set t_Co=256
 endif
 
 highlight JpSpace cterm=underline ctermfg=Blue guifg=Blue
@@ -100,6 +100,10 @@ autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufNewFile,BufRead *.scss set filetype=css
 
 "独自短縮入力"""""""""""""""""""""""""""""""""""""""
+inoremap [<TAB> []<LEFT>
+inoremap [<TAB><TAB> [""]<LEFT><LEFT>
+inoremap [[<TAB> [][]<LEFT><LEFT><LEFT>
+inoremap [[<TAB><TAB> [""][""]<LEFT><LEFT><LEFT><LEFT><LEFT><LEFT>
 nnoremap ,q <ESC>:bd<CR>
 inoremap <C-s> <ESC>:w<CR>
 nnoremap <C-s> <ESC>:w<CR>
@@ -250,3 +254,4 @@ endif
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 "#nnoremap ,e <ESC>:w<ESC>SyntasticCheck<CR> :SyntasticToggleMode<CR>
 nnoremap ,e :w<CR>:SyntasticCheck<CR>
+
